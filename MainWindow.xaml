@@ -1,0 +1,602 @@
+﻿<Window x:Class="Курсовая.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Курсовая"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Поток" Height="527" Width="1049"
+        Icon="resourses/icons/function.ico"
+         xmlns:fa="http://schemas.fontawesome.io/icons/"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="81*"/>
+            <ColumnDefinition Width="719*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl x:Name="tabControl" Grid.ColumnSpan="2">
+            <TabItem Header="Поток">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="170"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid HorizontalAlignment="Stretch" Grid.Column="0">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="100"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Margin="10 10 10 10">
+                                    <DataGrid Name="mainGrid" 
+                                              SelectionChanged="mainGrid_SelectionChanged" 
+                                              Background="White"
+                                              
+                                              IsReadOnly="True"
+                                              AlternatingRowBackground="#EEEEEE"                                              
+                                              ></DataGrid>
+                                </Grid>
+                                <Grid Grid.Row="1" Background="teal">
+                                    <StackPanel>
+                                        <TextBlock x:Name="CountTextbox" 
+                                                   Foreground="White"
+                                                   Margin="10 10 10 2"
+                                                   FontWeight="Bold"
+                                                   >
+                                            
+                                        </TextBlock>
+                                        <TextBlock x:Name="visibleCountTextbox" 
+                                                   Foreground="White"
+                                                   Margin="10 2 10 2"
+                                                   FontWeight="Bold"
+                                                   >
+                                                    
+                                        </TextBlock>
+                                        <TextBlock x:Name="inVisibleCountTextbox" 
+                                                   Foreground="White"
+                                                   Margin="10 2 10 2"
+                                                   FontWeight="Bold"
+                                                   >
+                                            
+                                        </TextBlock>
+                                        <TextBlock x:Name="additionalCountTextbox" 
+                                                   Foreground="White"
+                                                   Margin="10 2 10 2"
+                                                   FontWeight="Bold"
+                                                   >
+                                            
+                                            
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+                            <Grid Grid.Column="2" Margin="10 10 10 10">
+                                <WpfPlot Name="mainChart"></WpfPlot>
+                            </Grid>
+
+                        </Grid>
+                    </Grid>
+                    <Grid HorizontalAlignment="Right" Margin="0 5 15 0" Grid.Column="1">
+                        
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel  Margin="5 10 5 20" Orientation="Horizontal">
+                                <StackPanel Margin="3">
+                                    <fa:ImageAwesome Icon="Cog" Height="13"/>
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock FontSize="13" FontWeight="Bold">Параметры потока</TextBlock>
+                                </StackPanel>
+                                
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Width="60" Margin="10 0 10 0">
+                                    <TextBlock Foreground="Teal" FontWeight="Bold">λ1</TextBlock>
+                                    <TextBox Name = "Lambda1TextBox">2</TextBox>
+                                </StackPanel>
+                                <StackPanel Width="60" Margin="10 0 10 0">
+                                    <TextBlock Foreground="Teal" FontWeight="Bold">λ2</TextBlock>
+                                    <TextBox Name = "Lambda2TextBox">1</TextBox>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Width="60" Margin="10 0 10 0">
+                                    <TextBlock Foreground="Teal" FontWeight="Bold">α1</TextBlock>
+                                    <TextBox Name = "Alpha1TextBox">0.2</TextBox>
+                                </StackPanel>
+                                <StackPanel Width="60" Margin="10 0 10 0">
+                                    <TextBlock Foreground="Teal" FontWeight="Bold">α2</TextBlock>
+                                    <TextBox Name = "Alpha2TextBox">0.1</TextBox>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Width="60" Margin="10 0 10 0">
+                                    <TextBlock Foreground="Teal" FontWeight="Bold">p</TextBlock>
+                                    <TextBox Name = "pTextBox">0.5</TextBox>
+                                </StackPanel>
+                                <StackPanel Width="60" Margin="10 0 10 0">
+                                    <TextBlock Foreground="Teal" FontWeight="Bold">q</TextBlock>
+                                    <TextBox Name = "qTextBox">0.5</TextBox>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Width="110" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                    <TextBlock Foreground="Teal" FontWeight="Bold">T</TextBlock>
+                                    <TextBox Name = "tayTextBox">0.1</TextBox>
+                                </StackPanel>
+                                <StackPanel Width="150" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                    <TextBlock Foreground="Teal" FontWeight="Bold">Время моделирования</TextBlock>
+                                    <TextBox Name = "timeTextBox">100</TextBox>
+                                </StackPanel>
+                                
+                            </StackPanel>
+
+                            <StackPanel>
+                                <Button Margin="10 10 10 10" Name ="StartModelButton" 
+                                        Click="StartModelButton_Click"
+                                                                             
+                                        >Запустить</Button>
+                                <Button x:Name ="EqualWindowOpenButton"                                                                             
+                                    Content="Уравнение моментов" Click="EqualWindowOpenButton_Click"                                                                             
+                                        />
+                                <Button Margin="10 10 10 10" Name ="exp1Button" Click="exp1Button_Click"                                         
+                                    >Эксперимент 1</Button>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Эксперименты">
+                <TabControl TabStripPlacement="Left" Background="Teal">
+                    <TabItem Header="№1" Background="Teal">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="160"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0*"></RowDefinition>
+                                    <RowDefinition Height="3*"></RowDefinition>
+                                    <RowDefinition Height="4*"></RowDefinition>
+
+                                    <RowDefinition Height="80"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <!-- Устанавливаем три столбца -->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+
+                                <Grid Grid.Column="0" Grid.Row="1" Margin="10 10 10 10">
+                                    <ListView Name="list1" Height="auto">
+                                        
+                                    </ListView>
+
+
+                                </Grid>
+                                
+                                <Grid Grid.Column="0" Grid.Row="2">
+                                    <WpfPlot Name="exp1"></WpfPlot>
+                                </Grid>
+
+                                <Grid Grid.Column="0" Grid.Row="3"  Background="White" Margin="5 5 5 5">
+                                    <TextBlock Name="list1Text" TextWrapping="Wrap" 
+                                               Margin="10 10 10 10" Foreground="Teal"
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Center"
+                                               ></TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="1" Margin="10 10 10 10">
+
+                                    <ListView Name="list2" Height="auto"></ListView>
+
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="2">
+                                    <WpfPlot Name="exp1plot2"></WpfPlot>
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="3" Background="White" Margin="5 5 5 5">
+                                    
+                                    <TextBlock Name="list2Text" TextWrapping="Wrap"
+                                               Margin="10 10 10 10"
+                                               Foreground="Teal"
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Center"
+                                               ></TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="2" Grid.Row="1" Margin="10 10 10 10">
+                                    <ListView Name="list3" Height="auto"></ListView>
+
+                                </Grid>
+                                <Grid Grid.Column="2" Grid.Row="2">
+                                    <WpfPlot Name="exp1plot3"></WpfPlot>
+                                </Grid>
+                                <Grid Grid.Column="2" Grid.Row="3" Background="White" Margin="5 0 5 5">
+                                    <TextBlock Name="list3Text" 
+                                               TextWrapping="Wrap" 
+                                               Margin="10 10 10 10"
+                                               Foreground="Teal"
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Center"
+                                               ></TextBlock>
+                                </Grid>
+                            </Grid>
+
+                            <Grid MaxWidth="250" HorizontalAlignment="Right" Margin="5 5 0 0" Grid.Column="1">
+
+                                <StackPanel Orientation="Vertical">
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>λ1</TextBlock>
+                                            <TextBox Name = "Lambda1TextBox1">2</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>λ2</TextBlock>
+                                            <TextBox Name = "Lambda2TextBox1">1</TextBox>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>α1</TextBlock>
+                                            <TextBox Name = "Alpha1TextBox1">0.2</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>α2</TextBlock>
+                                            <TextBox Name = "Alpha2TextBox1">0.1</TextBox>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>p</TextBlock>
+                                            <TextBox Name = "pTextBox1">0.5</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>q</TextBlock>
+                                            <TextBox Name = "qTextBox1">0.5</TextBox>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Width="110" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>T</TextBlock>
+                                            <TextBox Name = "tayTextBox1">0.1</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="130" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>Время моделирования</TextBlock>
+                                            <TextBox Name = "timeTextBox1">100</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="130" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>Шаг</TextBlock>
+                                            <TextBox Name = "H1TextBox">50</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="130" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>Количество точек</TextBlock>
+                                            <TextBox Name = "PointsCount1TextBox">20</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="130" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>Начальная точка</TextBlock>
+                                            <TextBox Name = "StartPoint1TextBox">100</TextBox>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel>
+                                        <Button x:Name ="StartTestButton" Click="StartTestButton_Click" Content="Запустить"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </Grid>
+
+
+
+
+                        </Grid>
+                    </TabItem>
+                    
+                    <TabItem Header="№2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="160"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0*"></RowDefinition>
+                                    <RowDefinition Height="3*"></RowDefinition>
+                                    <RowDefinition Height="4*"></RowDefinition>
+
+                                    <RowDefinition Height="80"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <!-- Устанавливаем три столбца -->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+
+                                <Grid Grid.Column="0" Grid.Row="1" >
+                                    <ListView Name="list12" Height="auto">
+
+                                    </ListView>
+
+
+                                </Grid>
+                                <Grid Grid.Column="0" Grid.Row="2" >
+                                    <WpfPlot Name="exp2"></WpfPlot>
+                                </Grid>
+
+                                <Grid Grid.Column="0" Grid.Row="3">
+                                    <TextBlock Name="list12Text" TextWrapping="Wrap" FontWeight="Bold" Margin="10 10 10 10" Foreground="Teal"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="1" Margin="10 10 10 10">
+
+                                    <ListView Name="list22" Height="auto"></ListView>
+
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="2">
+                                    <WpfPlot Name="exp2plot2"></WpfPlot>
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="3">
+                                    <TextBlock Name="list22Text" TextWrapping="Wrap" Margin="10 10 10 10" FontWeight="Bold" Foreground="Teal"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="2" Grid.Row="1" Margin="10 10 10 10">
+                                    <ListView Name="list32" Height="auto"></ListView>
+
+                                </Grid>
+                                <Grid Grid.Column="2" Grid.Row="2">
+                                    <WpfPlot Name="exp2plot3"></WpfPlot>
+                                </Grid>
+                                <Grid Grid.Column="2" Grid.Row="3">
+                                    <TextBlock Name="list32Text" TextWrapping="Wrap" Margin="40 10 10 10" FontWeight="Bold" Foreground="Teal"></TextBlock>
+                                </Grid>
+                            </Grid>
+
+                            <Grid HorizontalAlignment="Right" Margin="5 5 0 0" Grid.Column="1">
+
+                                <StackPanel Orientation="Vertical">
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>λ1</TextBlock>
+                                            <TextBox Name = "Lambda1TextBox12">2</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>λ2</TextBlock>
+                                            <TextBox Name = "Lambda2TextBox12">1</TextBox>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>α1</TextBlock>
+                                            <TextBox Name = "Alpha1TextBox12">0.2</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>α2</TextBlock>
+                                            <TextBox Name = "Alpha2TextBox12">0.1</TextBox>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>p</TextBlock>
+                                            <TextBox Name = "pTextBox12">0.5</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>q</TextBlock>
+                                            <TextBox Name = "qTextBox12">0.5</TextBox>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Width="110" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>T</TextBlock>
+                                            <TextBox Name = "tayTextBox12">0.1</TextBox>
+                                        </StackPanel>
+                                       
+                                        <StackPanel Width="130" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>Кол-во экспериментов</TextBlock>
+                                            <TextBox Name = "CountExpTextBox">100</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="130" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>Шаг</TextBlock>
+                                            <TextBox Name = "H2TextBox">50</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="130" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>Количество точек</TextBlock>
+                                            <TextBox Name = "Points2CountTextBox">20</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="130" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>Начальная точка</TextBlock>
+                                            <TextBox Name = "StartPoint2TextBox">100</TextBox>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel>
+                                        <Button Margin="10 10 10 10" Name ="StartTest1Button" Click="StartTest1Button_Click">Запустить</Button>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </Grid>
+
+
+
+
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="№3" Background="Teal">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="160"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0*"></RowDefinition>
+                                    <RowDefinition Height="3*"></RowDefinition>
+                                    <RowDefinition Height="4*"></RowDefinition>
+
+                                    <RowDefinition Height="80"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <!-- Устанавливаем три столбца -->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+
+                                <Grid Grid.Column="0" Grid.Row="1" Margin="10 10 10 10">
+                                    <ListView Name="list4" Height="auto">
+
+                                    </ListView>
+
+
+                                </Grid>
+
+                                <Grid Grid.Column="0" Grid.Row="2">
+                                    <WpfPlot Name="exp3"></WpfPlot>
+                                </Grid>
+
+                                <Grid Grid.Column="0" Grid.Row="3"  Background="White" Margin="5 5 5 5">
+                                    <TextBlock Name="list4Text" TextWrapping="Wrap" 
+                                               Margin="10 10 10 10" Foreground="Teal"
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Center"
+                                               ></TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="1" Margin="10 10 10 10">
+
+                                    <ListView Name="list5" Height="auto"></ListView>
+
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="2">
+                                    <WpfPlot Name="exp3plot2"></WpfPlot>
+                                </Grid>
+                                <Grid Grid.Column="1" Grid.Row="3" Background="White" Margin="5 5 5 5">
+
+                                    <TextBlock Name="list5Text" TextWrapping="Wrap"
+                                               Margin="10 10 10 10"
+                                               Foreground="Teal"
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Center"
+                                               ></TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="2" Grid.Row="1" Margin="10 10 10 10">
+                                    <ListView Name="list6" Height="auto"></ListView>
+
+                                </Grid>
+                                <Grid Grid.Column="2" Grid.Row="2">
+                                    <WpfPlot Name="exp1plot4"></WpfPlot>
+                                </Grid>
+                                <Grid Grid.Column="2" Grid.Row="3" Background="White" Margin="5 0 5 5">
+                                    <TextBlock Name="list7Text" 
+                                               TextWrapping="Wrap" 
+                                               Margin="10 10 10 10"
+                                               Foreground="Teal"
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Center"
+                                               ></TextBlock>
+                                </Grid>
+                            </Grid>
+
+                            <Grid MaxWidth="250" HorizontalAlignment="Right" Margin="5 5 0 0" Grid.Column="1">
+
+                                <StackPanel Orientation="Vertical">
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>λ1</TextBlock>
+                                            <TextBox Name = "Lambda1TextBox3">2</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>λ2</TextBlock>
+                                            <TextBox Name = "Lambda2TextBox3">1</TextBox>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>α1</TextBlock>
+                                            <TextBox Name = "Alpha1TextBox3">0.2</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>α2</TextBlock>
+                                            <TextBox Name = "Alpha2TextBox3">0.1</TextBox>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>p</TextBlock>
+                                            <TextBox Name = "pTextBox3">0.5</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="60" Margin="10 0 10 0">
+                                            <TextBlock>q</TextBlock>
+                                            <TextBox Name = "qTextBox3">0.5</TextBox>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Width="110" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>T</TextBlock>
+                                            <TextBox Name = "tayTextBox3">0.1</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="130" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>Время моделирования</TextBlock>
+                                            <TextBox Name = "timeTextBox3">100</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="130" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>Шаг</TextBlock>
+                                            <TextBox Name = "H3TextBox">0.10</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="130" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>Количество точек</TextBlock>
+                                            <TextBox Name = "PointsCount3TextBox">20</TextBox>
+                                        </StackPanel>
+                                        <StackPanel Width="130" Margin="10 0 10 0" HorizontalAlignment="Left">
+                                            <TextBlock>Начальная точка</TextBlock>
+                                            <TextBox Name = "StartPoint3TextBox">100</TextBox>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel>
+                                        <Button Margin="10 10 10 10" Name ="StartTestButton3" Click="StartTestButton3_Click">Запустить</Button>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </Grid>
+
+
+
+
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+                
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

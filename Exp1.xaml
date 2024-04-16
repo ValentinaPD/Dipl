@@ -1,0 +1,136 @@
+﻿<Window x:Class="Курсовая.Exp1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Курсовая"
+        mc:Ignorable="d"
+        Title="Exp1" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="170"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Stretch" Grid.Column="0">
+            <UniformGrid Rows="1" Columns="2">
+                <UniformGrid Rows="3" Columns="2">
+                    <Grid>
+                        <WpfPlot Name="plot1"></WpfPlot>
+                    </Grid>
+                    <Grid>
+                        <WpfPlot Name="plot2"></WpfPlot>
+                    </Grid>
+                    <Grid>
+                        <WpfPlot Name="plot3"></WpfPlot>
+                    </Grid>
+                    <Grid>
+                        <WpfPlot Name="plot4"></WpfPlot>
+                    </Grid>
+                    <Grid>
+                        <WpfPlot Name="plot5"></WpfPlot>
+                    </Grid>
+                    <Grid>
+                        <WpfPlot Name="plot6"></WpfPlot>
+                    </Grid>
+                </UniformGrid>
+                <UniformGrid Rows="6" Columns="1">
+                    <DataGrid Name="Exp1Grid"                           
+                          Background="White"          
+                          IsReadOnly="True"
+                          AlternatingRowBackground="#EEEEEE"                                              
+                    ></DataGrid>
+                    <DataGrid Name="Exp2Grid"                           
+                          Background="White"          
+                          IsReadOnly="True"
+                          AlternatingRowBackground="#EEEEEE"                                              
+                    ></DataGrid>
+                    <DataGrid Name="Exp3Grid"                           
+                          Background="White"          
+                          IsReadOnly="True"
+                          AlternatingRowBackground="#EEEEEE"                                              
+                    ></DataGrid>
+                    <DataGrid Name="Exp4Grid"                           
+                          Background="White"          
+                          IsReadOnly="True"
+                          AlternatingRowBackground="#EEEEEE"                                              
+                    ></DataGrid>
+                    <DataGrid Name="Exp5Grid"                           
+                          Background="White"          
+                          IsReadOnly="True"
+                          AlternatingRowBackground="#EEEEEE"                                              
+                    ></DataGrid>
+                    <DataGrid Name="Exp6Grid"                           
+                          Background="White"          
+                          IsReadOnly="True"
+                          AlternatingRowBackground="#EEEEEE"                                              
+                    ></DataGrid>
+                </UniformGrid>
+            </UniformGrid>
+        </Grid>
+        <Grid HorizontalAlignment="Stretch" Grid.Column="1">
+            <StackPanel Orientation="Vertical">
+                <StackPanel  Margin="5 10 5 20" Orientation="Horizontal">
+                    <StackPanel Margin="3">
+                        
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock FontSize="13" FontWeight="Bold">Параметры потока</TextBlock>
+                    </StackPanel>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Width="60" Margin="10 0 10 0">
+                        <TextBlock Foreground="Teal" FontWeight="Bold">λ1</TextBlock>
+                        <TextBox Name = "Lambda1TextBox">0.86</TextBox>
+                    </StackPanel>
+                    <StackPanel Width="60" Margin="10 0 10 0">
+                        <TextBlock Foreground="Teal" FontWeight="Bold">λ2</TextBlock>
+                        <TextBox Name = "Lambda2TextBox">0.03</TextBox>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Width="60" Margin="10 0 10 0">
+                        <TextBlock Foreground="Teal" FontWeight="Bold">α1</TextBlock>
+                        <TextBox Name = "Alpha1TextBox">1</TextBox>
+                    </StackPanel>
+                    <StackPanel Width="60" Margin="10 0 10 0">
+                        <TextBlock Foreground="Teal" FontWeight="Bold">α2</TextBlock>
+                        <TextBox Name = "Alpha2TextBox">0.43</TextBox>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Width="60" Margin="10 0 10 0">
+                        <TextBlock Foreground="Teal" FontWeight="Bold">p</TextBlock>
+                        <TextBox Name = "pTextBox">0.2</TextBox>
+                    </StackPanel>
+                    <StackPanel Width="60" Margin="10 0 10 0">
+                        <TextBlock Foreground="Teal" FontWeight="Bold">q</TextBlock>
+                        <TextBox Name = "qTextBox">0.3</TextBox>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Width="110" Margin="10 0 10 0" HorizontalAlignment="Left">
+                        <TextBlock Foreground="Teal" FontWeight="Bold">T</TextBlock>
+                        <TextBox Name = "tayTextBox">0.1</TextBox>
+                    </StackPanel>
+                    <StackPanel Width="150" Margin="10 0 10 0" HorizontalAlignment="Left">
+                        <TextBlock Foreground="Teal" FontWeight="Bold">Время моделирования</TextBlock>
+                        <TextBox Name = "timeTextBox">100</TextBox>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel>
+                    <Button Margin="10 10 10 10" Name ="StartModelButton" Click="StartModelButton_Click">Запустить</Button>                                                                                             
+                 
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+
+    </Grid>
+</Window>
